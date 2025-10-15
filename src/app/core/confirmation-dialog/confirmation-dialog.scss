@@ -1,0 +1,64 @@
+:host {
+    all: unset;
+    display: block;
+    min-width: 360px;
+    border-radius: 12px;
+    background: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+}
+
+h2[mat-dialog-title] {
+    margin: 0;
+    padding: 20px 24px 12px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--mat-sys-primary);
+}
+
+mat-dialog-content {
+    padding: 16px 24px;
+    font-size: 15px;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px 20px;
+}
+
+.dialog-actions .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.btn-elevated {
+    background-color: #ffffff;
+    color: #1565c0;
+    border: 1px solid #1565c0;
+    border-radius: 24px;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-elevated:hover {
+    background-color: #e3f2fd;
+}
+
+.btn-filled {
+    background-color: #1565c0;
+    color: #ffffff;
+    border: none;
+    border-radius: 24px;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-filled:hover {
+    background-color: #0d47a1;
+}

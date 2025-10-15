@@ -1,0 +1,35 @@
+<mat-card class="abm-card">
+    <h3>{{ alumno ? 'Editar Alumno' : 'Nuevo Alumno' }}</h3>
+
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="apellido" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Género</mat-label>
+            <mat-select formControlName="genero">
+                <mat-option value="Masculino">Masculino</mat-option>
+                <mat-option value="Femenino">Femenino</mat-option>
+                <mat-option value="Otro">Otro</mat-option>
+                <mat-option value="Prefiero no decirlo">Prefiero no decirlo</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width email-form-field">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+        </mat-form-field>
+
+        <div class="actions">
+            <button mat-raised-button color="primary" type="submit">Guardar</button>
+            <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+        </div>
+    </form>
+</mat-card>
