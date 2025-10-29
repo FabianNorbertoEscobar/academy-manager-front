@@ -1,0 +1,56 @@
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    @if (isEditing) {
+    <mat-form-field appearance="fill">
+        <mat-label>ID</mat-label>
+        <input matInput disabled value="{{ studentId }}" />
+    </mat-form-field>
+    }
+
+    <mat-form-field class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input [ngClass]="{
+		  'is-invalid': inputInvalid('firstName'),
+		  'is-valid': inputValid('firstName') && createForm.get('firstName')?.dirty,
+		}" matInput name="firstName" formControlName="firstName" />
+
+        <mat-error> {{ getError('firstName') }} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+        <mat-label>Apellido</mat-label>
+        <input [ngClass]="{
+		  'is-invalid': inputInvalid('lastName'),
+		  'is-valid': inputValid('lastName') && createForm.get('lastName')?.dirty,
+		}" matInput name="lastName" formControlName="lastName" />
+
+        <mat-error> {{ getError('lastName') }} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="MM/DD/YYYY" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error> {{ getError('birthDate') }} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput name="email" formControlName="email" />
+
+        <mat-error> {{ getError('email') }} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+        <mat-label>Género</mat-label>
+        <mat-select name="gender" formControlName="gender">
+            <mat-option value="MALE">Masculino</mat-option>
+            <mat-option value="FEMALE">Femenino</mat-option>
+            <mat-option value="OTHER">Otro</mat-option>
+            <mat-option value="PREFER_NOT_TO_SAY">Prefiero no decir</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary">Guardar</button>
+</form>

@@ -1,0 +1,80 @@
+@use '../../../styles/variables' as vars;
+
+.drawer-container {
+    width: 100%;
+    height: 100vh;
+}
+
+.sidenav {
+    padding: 20px;
+    max-width: 300px;
+}
+
+.main-content {
+    padding: 20px 40px;
+}
+
+mat-toolbar {
+    background-color: vars.$blue;
+    color: #ffffff;
+    box-shadow: none;
+}
+
+mat-toolbar .mat-icon,
+mat-toolbar button.mat-icon-button {
+    color: #ffffff;
+}
+
+.toolbar-title {
+    color: #ffffff;
+    margin-left: 12px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.2px;
+}
+
+@media (max-width: 420px) {
+    .toolbar-title {
+        display: none;
+    }
+}
+
+.sidenav {
+    background-color: vars.$light-aqua;
+    color: vars.$blue;
+}
+
+.sidenav h4 {
+    margin: 0 0 16px 0;
+    color: vars.$blue;
+}
+
+.sidenav mat-nav-list a.mat-list-item {
+    color: vars.$blue;
+    border-radius: 6px;
+    transition: background-color 180ms ease, color 180ms ease, transform 120ms ease;
+    margin: 4px 0;
+}
+
+.sidenav mat-nav-list a.mat-list-item:hover {
+    background-color: lighten(vars.$blue, 30%);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.sidenav mat-nav-list a.mat-list-item .mat-icon {
+    color: vars.$blue;
+}
+
+.sidenav mat-nav-list a.mat-list-item.active,
+.sidenav mat-nav-list a.mat-list-item.mat-list-item-active {
+    background-color: vars.$light-blue;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .sidenav {
+        max-width: 220px;
+        padding: 12px;
+    }
+}

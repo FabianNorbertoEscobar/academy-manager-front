@@ -1,5 +1,30 @@
+// Variables SCSS globales del proyecto
+// - Proporciona variables Sass y también expone Custom Properties CSS
+// - Uso recomendado en componentes: `@use 'styles/variables' as vars;` y luego `color: vars.$aqua;`
+// - Uso runtime / en templates: `color: var(--aqua);`
+
+// Valores Sass
 $aqua: #52f5c4;
 $light-blue: #35A8E6;
 $green: #35E673;
 $light-aqua: #35E0E6;
 $blue: #3570E6;
+
+// Exponer como variables CSS para uso en tiempo de ejecución (templates, inline styles, etc.)
+:root {
+    --aqua: #{$aqua};
+    --light-blue: #{$light-blue};
+    --green: #{$green};
+    --light-aqua: #{$light-aqua};
+    --blue: #{$blue};
+}
+
+// Nota rápida para desarrolladores:
+// - En estilos globales (ya importado en `src/styles.scss`) puedes usar directamente `$aqua` o `var(--aqua)`.
+// - En estilos de componentes:
+//     Opción A (recomendada, con `stylePreprocessorOptions.includePaths: ["src"]`):
+//       @use 'styles/variables' as vars;
+//       .mi-clase { color: vars.$aqua; }
+//     Opción B (sin configuración adicional): importar con ruta relativa
+//       @use '../styles/variables' as vars;
+//     Opción C (si quieres evitar importar): usar la variable CSS: `color: var(--aqua);`

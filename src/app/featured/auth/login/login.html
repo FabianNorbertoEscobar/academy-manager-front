@@ -1,0 +1,32 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <div class="app-brand">
+                <h1 class="brand-title">Academy Manager</h1>
+                <mat-icon class="brand-icon">school</mat-icon>
+            </div>
+            <mat-card-title>Bienvenido</mat-card-title>
+            <mat-card-subtitle>Ingresa tus credenciales para continuar</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <form>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Ingrese su email" type="email" />
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput placeholder="Ingrese su contraseña" type="password" />
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-footer class="login-card-footer">
+            <button mat-flat-button color="primary" class="login-button" [routerLink]="'/dashboard'">
+                <span>Iniciar Sesión</span>
+                <mat-icon>arrow_forward</mat-icon>
+            </button>
+        </mat-card-footer>
+    </mat-card>
+</div>
