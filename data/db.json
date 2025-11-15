@@ -1,0 +1,253 @@
+{
+    "users": [
+        {
+            "id": "1",
+            "username": "admin",
+            "email": "admin@gmail.com",
+            "password": "1234",
+            "role": "ADMIN"
+        },
+        {
+            "id": "2",
+            "username": "user",
+            "email": "user@gmail.com",
+            "password": "1234",
+            "role": "USER"
+        },
+        {
+            "id": "3",
+            "username": "user2",
+            "email": "user2@gmail.com",
+            "password": "1234",
+            "role": "USER"
+        }
+    ],
+    "courses": [
+        {
+            "id": "1",
+            "title": "Técnica Vocal",
+            "description": "Este curso se centra en el desarrollo del control respiratorio, la colocación de la voz y la proyección escénica. Los alumnos aprenden ejercicios de calentamiento vocal, afinación y técnicas para ampliar su rango y resistencia durante las interpretaciones en vivo.",
+            "beginDate": "2025-03-01",
+            "endDate": "2025-06-30",
+            "status": "SCHEDULED"
+        },
+        {
+            "id": "2",
+            "title": "Interpretación Escénica",
+            "description": "En este curso se trabaja la conexión emocional con las canciones, la comunicación con el público y la expresión corporal. Los estudiantes aprenden a transmitir sentimientos auténticos en el escenario, combinando actuación y canto.",
+            "beginDate": "2025-01-15",
+            "endDate": "2025-04-15",
+            "status": "STARTED"
+        },
+        {
+            "id": "3",
+            "title": "Piano para Cantantes",
+            "description": "Un curso diseñado para vocalistas que buscan acompañarse al piano. Se enseña armonía básica, lectura de acordes, acompañamiento de voz y cómo interpretar canciones populares con estilo y musicalidad.",
+            "beginDate": "2024-09-01",
+            "endDate": "2024-12-20",
+            "status": "FINISHED"
+        },
+        {
+            "id": "4",
+            "title": "Bailes Urbanos",
+            "description": "Curso intensivo de danza urbana que combina estilos como hip-hop, street dance y funk. Ideal para artistas que desean complementar su formación vocal con presencia escénica y dominio del cuerpo en movimiento.",
+            "beginDate": "2025-05-10",
+            "endDate": "2025-08-20",
+            "status": "SCHEDULED"
+        },
+        {
+            "id": "5",
+            "title": "Producción Musical",
+            "description": "Los alumnos aprenden a grabar, mezclar y producir sus propias canciones utilizando herramientas digitales. Se cubren conceptos de teoría del sonido, estructuras de canciones y edición profesional de voz.",
+            "beginDate": "2025-02-01",
+            "endDate": "2025-06-01",
+            "status": "STARTED"
+        },
+        {
+            "id": "6",
+            "title": "Repertorio Pop y Rock",
+            "description": "Curso orientado a la exploración y dominio de los géneros pop y rock. Incluye análisis de estilos, interpretación vocal y performance de clásicos y temas actuales del repertorio internacional.",
+            "beginDate": "2024-10-01",
+            "endDate": "2025-01-15",
+            "status": "FINISHED"
+        },
+        {
+            "id": "7",
+            "title": "Armonía y Teoría Musical",
+            "description": "Fundamentos de la música moderna: intervalos, escalas, acordes y progresiones armónicas. Este curso proporciona la base teórica necesaria para entender y construir canciones propias.",
+            "beginDate": "2025-04-01",
+            "endDate": "2025-07-30",
+            "status": "SCHEDULED"
+        },
+        {
+            "id": "8",
+            "title": "Expresión Corporal y Movimiento Escénico",
+            "description": "Entrenamiento físico y de conciencia corporal para mejorar la expresividad en el escenario. Incluye técnicas de postura, ritmo corporal y desplazamiento escénico.",
+            "beginDate": "2025-03-20",
+            "endDate": "2025-06-30",
+            "status": "SCHEDULED"
+        },
+        {
+            "id": "9",
+            "title": "Coro y Armonías Vocales",
+            "description": "Curso grupal donde los estudiantes trabajan la afinación colectiva, las armonías vocales y la escucha activa. Se preparan piezas corales modernas para presentaciones en vivo.",
+            "beginDate": "2025-01-10",
+            "endDate": "2025-04-10",
+            "status": "STARTED"
+        },
+        {
+            "id": "10",
+            "title": "Inglés para Cantantes",
+            "description": "Curso especializado en pronunciación, fonética y comprensión del inglés aplicado al canto. Ideal para quienes desean interpretar repertorio internacional con naturalidad y precisión.",
+            "beginDate": "2024-11-01",
+            "endDate": "2025-02-28",
+            "status": "FINISHED"
+        }
+    ],
+    "students": [
+        {
+            "id": "1",
+            "firstName": "Claudia",
+            "lastName": "Arenas",
+            "gender": "FEMALE",
+            "birthDate": "2006-05-14",
+            "email": "claudia.arenas@ot2025.es"
+        },
+        {
+            "id": "2",
+            "firstName": "Cristina",
+            "lastName": "Sánchez",
+            "gender": "FEMALE",
+            "birthDate": "2006-03-22",
+            "email": "cristina.sanchez@ot2025.es"
+        },
+        {
+            "id": "3",
+            "firstName": "Javier",
+            "lastName": "Crespo",
+            "gender": "MALE",
+            "birthDate": "2004-11-08",
+            "email": "javier.crespo@ot2025.es"
+        },
+        {
+            "id": "4",
+            "firstName": "Salma",
+            "lastName": "de Diego",
+            "gender": "FEMALE",
+            "birthDate": "2006-09-17",
+            "email": "salma.dediego@ot2025.es"
+        },
+        {
+            "id": "5",
+            "firstName": "Laura",
+            "lastName": "Muñoz",
+            "gender": "FEMALE",
+            "birthDate": "2005-12-04",
+            "email": "laura.munoz@ot2025.es"
+        },
+        {
+            "id": "6",
+            "firstName": "Carlos",
+            "lastName": "de los Reyes",
+            "gender": "MALE",
+            "birthDate": "2002-04-10",
+            "email": "carlos.delosreyes@ot2025.es"
+        },
+        {
+            "id": "7",
+            "firstName": "Guillermo",
+            "lastName": "Toledano",
+            "gender": "MALE",
+            "birthDate": "2001-07-26",
+            "email": "guillermo.toledano@ot2025.es"
+        },
+        {
+            "id": "8",
+            "firstName": "Guillo",
+            "lastName": "Rist",
+            "gender": "MALE",
+            "birthDate": "2002-02-15",
+            "email": "guillo.rist@ot2025.es"
+        },
+        {
+            "id": "9",
+            "firstName": "Iván",
+            "lastName": "Rojo",
+            "gender": "MALE",
+            "birthDate": "2002-08-30",
+            "email": "ivan.rojo@ot2025.es"
+        },
+        {
+            "id": "10",
+            "firstName": "Judit",
+            "lastName": "Garuz",
+            "gender": "FEMALE",
+            "birthDate": "2005-06-02",
+            "email": "judit.garuz@ot2025.es"
+        },
+        {
+            "id": "11",
+            "firstName": "Quique",
+            "lastName": "Illán",
+            "gender": "MALE",
+            "birthDate": "2004-01-27",
+            "email": "quique.illan@ot2025.es"
+        },
+        {
+            "id": "12",
+            "firstName": "Lucía",
+            "lastName": "Casani",
+            "gender": "FEMALE",
+            "birthDate": "2006-10-11",
+            "email": "lucia.casani@ot2025.es"
+        },
+        {
+            "id": "13",
+            "firstName": "María",
+            "lastName": "Cruz",
+            "gender": "FEMALE",
+            "birthDate": "2001-09-05",
+            "email": "maria.cruz@ot2025.es"
+        },
+        {
+            "id": "14",
+            "firstName": "Tinho",
+            "lastName": "Vaamonde",
+            "gender": "MALE",
+            "birthDate": "2003-02-09",
+            "email": "tinho.vaamonde@ot2025.es"
+        },
+        {
+            "id": "15",
+            "firstName": "Max",
+            "lastName": "Navarro",
+            "gender": "MALE",
+            "birthDate": "2002-03-18",
+            "email": "max.navarro@ot2025.es"
+        },
+        {
+            "id": "16",
+            "firstName": "Sam",
+            "lastName": "Ortiz",
+            "gender": "MALE",
+            "birthDate": "1996-07-20",
+            "email": "sam.ortiz@ot2025.es"
+        },
+        {
+            "id": "17",
+            "firstName": "Olivia",
+            "lastName": "Fernández",
+            "gender": "FEMALE",
+            "birthDate": "2006-11-23",
+            "email": "olivia.fernandez@ot2025.es"
+        },
+        {
+            "id": "18",
+            "firstName": "Téyou",
+            "lastName": "Matateyou García",
+            "gender": "FEMALE",
+            "birthDate": "1997-01-19",
+            "email": "teyou.matateyougarcia@ot2025.es"
+        }
+    ]
+}

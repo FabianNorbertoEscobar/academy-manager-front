@@ -1,4 +1,5 @@
 @use '../../../styles/variables' as vars;
+@use "sass:color";
 
 .drawer-container {
     width: 100%;
@@ -57,7 +58,7 @@ mat-toolbar button.mat-icon-button {
 }
 
 .sidenav mat-nav-list a.mat-list-item:hover {
-    background-color: lighten(vars.$blue, 30%);
+    background-color: color.adjust(vars.$blue, $lightness: 30%);
     color: #ffffff;
     transform: translateY(-1px);
 }

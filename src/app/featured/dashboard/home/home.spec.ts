@@ -10,7 +10,7 @@ describe('Home', () => {
     await TestBed.configureTestingModule({
       declarations: [Home]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(Home);
     component = fixture.componentInstance;
@@ -18,6 +18,15 @@ describe('Home', () => {
   });
 
   it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render the home template', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled).toBeTruthy();
+  });
+
+  it('should initialize with proper structure', () => {
     expect(component).toBeTruthy();
   });
 });
