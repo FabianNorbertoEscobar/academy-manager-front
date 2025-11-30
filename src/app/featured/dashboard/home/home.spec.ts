@@ -1,14 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Store } from '@ngrx/store';
+import { SharedModule } from '../../../shared/shared-module';
 
 import { Home } from './home';
 
 describe('Home', () => {
   let component: Home;
   let fixture: ComponentFixture<Home>;
+  let mockStore: jasmine.SpyObj<Store>;
 
   beforeEach(async () => {
+    mockStore = jasmine.createSpyObj('Store', ['dispatch', 'select']);
+
     await TestBed.configureTestingModule({
-      declarations: [Home]
+      declarations: [Home],
+      imports: [SharedModule],
+      providers: [
+        { provide: Store, useValue: mockStore }
+      ]
     })
       .compileComponents();
 

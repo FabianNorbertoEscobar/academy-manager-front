@@ -5,6 +5,7 @@ import { SharedModule } from '../../../../shared/shared-module';
 import { StudentsService } from '../../../../core/services/students/students';
 import { Student, Gender } from '../../../../core/services/students/model/Student';
 import { BehaviorSubject } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { StudentsTable } from './students-table';
 
@@ -13,6 +14,7 @@ describe('StudentsTable', () => {
   let fixture: ComponentFixture<StudentsTable>;
   let studentsService: jasmine.SpyObj<StudentsService>;
   let dialog: jasmine.SpyObj<MatDialog>;
+  let mockStore: jasmine.SpyObj<Store>;
 
   const mockStudents: Student[] = [
     { id: '1', firstName: 'John', lastName: 'Doe', email: 'john@example.com', birthDate: new Date('2000-01-01'), gender: Gender.MALE },
@@ -24,13 +26,17 @@ describe('StudentsTable', () => {
       students$: new BehaviorSubject(mockStudents)
     });
     const dialogSpy = jasmine.createSpyObj('MatDialog', ['open']);
+    mockStore = jasmine.createSpyObj('Store', ['dispatch', 'select']);
+
+    mockStore.select.and.returnValue(new BehaviorSubject(mockStudents));
 
     await TestBed.configureTestingModule({
       declarations: [StudentsTable],
       imports: [SharedModule, RouterTestingModule],
       providers: [
         { provide: StudentsService, useValue: studentsServiceSpy },
-        { provide: MatDialog, useValue: dialogSpy }
+        { provide: MatDialog, useValue: dialogSpy },
+        { provide: Store, useValue: mockStore }
       ]
     })
       .compileComponents();
@@ -59,7 +65,7 @@ describe('StudentsTable', () => {
 
   it('should call getStudents on initialization', () => {
     component.ngOnInit();
-    expect(studentsService.getStudents).toHaveBeenCalled();
+    expect(mockStore.dispatch).toHaveBeenCalled();
   });
 
   it('should open confirmation dialog when deleting a student', () => {

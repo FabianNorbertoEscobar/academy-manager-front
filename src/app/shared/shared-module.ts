@@ -17,7 +17,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { getSpanishPaginatorIntl } from './paginator-intl-spanish';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HeaderFont } from './directives/header-font';
 import { FullNamePipe } from './pipes/full-name-pipe';
 import { RouterModule } from '@angular/router';
@@ -45,6 +49,8 @@ import { RouterModule } from '@angular/router';
     MatSortModule,
     MatDatepickerModule,
     MatSelectModule,
+    MatGridListModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -66,9 +72,14 @@ import { RouterModule } from '@angular/router';
     MatDatepickerModule,
     MatSelectModule,
     MatDialogModule,
+    MatGridListModule,
+    MatProgressSpinnerModule,
     HeaderFont,
     FullNamePipe
   ],
-  providers: [provideNativeDateAdapter()],
+  providers: [
+    provideNativeDateAdapter(),
+    { provide: MatPaginatorIntl, useFactory: getSpanishPaginatorIntl },
+  ],
 })
 export class SharedModule { }

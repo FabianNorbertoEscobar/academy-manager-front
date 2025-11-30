@@ -3,48 +3,66 @@ import { Injectable } from '@angular/core';
 import { API_URL } from '../../utils/constants';
 import { User } from './model/User';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { lastValueFrom, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { RootState } from '../../store';
+import { setAuthUser } from '../../store/auth/auth.actions';
+import { selectUser } from '../../store/auth/auth.selector';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private usersUrl = `${API_URL}/users`;
-  user: User | null = null;
+  user$: Observable<any>;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private store: Store<RootState>) {
+    this.user$ = this.store.select(selectUser);
 
-  login(email: string, password: string) {
-    return new Promise((resolve, reject) => {
-      this.http.get<User[]>(this.usersUrl).subscribe({
-        next: (users) => {
-          const user = users.find((user) => user.email === email);
+    const token = localStorage.getItem('token');
 
-          if (!user) {
-            reject('Email inválido');
-            return;
-          }
+    if (token) {
+      const [email, password] = token.split('&');
+      this.login(email, password)
+        .then((user) => {
+          this.store.dispatch(setAuthUser({ payload: user }));
+        })
+        .catch(() => {
+        });
+    }
+  }
 
-          if (user.password !== password) {
-            reject('Contraseña inválida');
-            return;
-          }
+  login(email: string, password: string): Promise<User> {
+    const users$ = this.http.get<User[]>(this.usersUrl).pipe(
+      map((users) => {
+        const user = users.find((user) => user.email === email);
 
-          localStorage.setItem('token', user.email);
-          this.user = user;
-          this.router.navigate(['dashboard']);
-          resolve(user);
-        },
-        error: (error) => {
-          reject('Error al intentar iniciar sesión');
+        if (!user) {
+          throw new Error('Email inválido');
         }
-      });
-    });
+
+        if (user.password !== password) {
+          throw new Error('Contraseña inválida');
+        }
+
+        this.setToken(`${user.email}&${user.password}`);
+        this.store.dispatch(setAuthUser({ payload: user }));
+        return user as User;
+      })
+    );
+
+    return lastValueFrom(users$);
   }
 
   logout() {
     localStorage.removeItem('token');
-    this.user = null;
+    this.store.dispatch(setAuthUser({ payload: null }));
     this.router.navigate(['login']);
+  }
+
+  setToken(email: string) {
+    localStorage.setItem('token', email);
   }
 
   isAuthenticated() {

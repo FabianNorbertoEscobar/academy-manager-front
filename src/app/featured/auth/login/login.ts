@@ -27,6 +27,7 @@ export class Login {
 
     try {
       await this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
+      this.router.navigate(['/dashboard']);
     } catch (error) {
       alert(error);
     }

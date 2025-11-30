@@ -1,1 +1,134 @@
-<h1 appHeaderFont>Bienvenido</h1>
+<h1 appHeaderFont class="mb-3">Bienvenido {{ (user$ | async)?.username }}</h1>
+
+@if ((user$ | async)?.role === 'ADMIN') {
+
+<section class="dashboard-section">
+    <mat-grid-list cols="3" rowHeight="120px" gutterSize="16px">
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card">
+                <h3>Total de cursos</h3>
+                <p>{{ totalCourses }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card">
+                <h3>Total de alumnos</h3>
+                <p>{{ totalStudents }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card alert-card">
+                <h3>Cursos sin alumnos</h3>
+                <p>{{ emptyCourses }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card alert-card">
+                <h3>Cursos por finalizar</h3>
+                <p>{{ endingSoonCourses }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card alert-card">
+                <h3>Datos incompletos</h3>
+                <p>{{ incompleteStudents }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card alert-card">
+                <h3>Cursos inactivos</h3>
+                <p>{{ inactiveCourses }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card alert-card">
+                <h3>Alumnos sin curso</h3>
+                <p>{{ studentsWithoutCourse }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card">
+                <h3>Cursos programados</h3>
+                <p>{{ scheduledCourses }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card">
+                <h3>Cursos por iniciar</h3>
+                <p>{{ startingSoonCourses }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+</section>
+
+<section class="quick-actions">
+    <h2>Accesos rápidos</h2>
+
+    <div class="actions-row">
+        <button mat-raised-button color="primary" (click)="goToCreateCourse()">
+            <mat-icon>add</mat-icon> Crear curso
+        </button>
+
+        <button mat-raised-button color="primary" (click)="goToCreateStudent()">
+            <mat-icon>person_add</mat-icon> Crear alumno
+        </button>
+
+        <button mat-stroked-button color="accent" (click)="goToCourses()">
+            <mat-icon>list</mat-icon> Ver cursos
+        </button>
+
+        <button mat-stroked-button color="accent" (click)="goToStudents()">
+            <mat-icon>group</mat-icon> Ver alumnos
+        </button>
+    </div>
+</section>
+
+}
+
+@else {
+
+<section class="dashboard-section">
+    <mat-grid-list cols="2" rowHeight="120px" gutterSize="16px">
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card">
+                <h3>Total de cursos</h3>
+                <p>{{ totalCourses }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-card class="dashboard-card">
+                <h3>Total de alumnos</h3>
+                <p>{{ totalStudents }}</p>
+            </mat-card>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+</section>
+
+<section class="quick-actions">
+    <h2>Accesos rápidos</h2>
+
+    <div class="actions-row">
+        <button mat-stroked-button color="accent" (click)="goToCourses()">
+            <mat-icon>list</mat-icon> Ver cursos
+        </button>
+
+        <button mat-stroked-button color="accent" (click)="goToStudents()">
+            <mat-icon>group</mat-icon> Ver alumnos
+        </button>
+    </div>
+</section>
+
+}

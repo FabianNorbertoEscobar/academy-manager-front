@@ -5,6 +5,7 @@ import { SharedModule } from '../../../../shared/shared-module';
 import { CoursesService } from '../../../../core/services/courses/courses';
 import { Course, CourseStatus } from '../../../../core/services/courses/model/Course';
 import { BehaviorSubject } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { CoursesTable } from './courses-table';
 
@@ -13,6 +14,7 @@ describe('CoursesTable', () => {
   let fixture: ComponentFixture<CoursesTable>;
   let coursesService: jasmine.SpyObj<CoursesService>;
   let dialog: jasmine.SpyObj<MatDialog>;
+  let mockStore: jasmine.SpyObj<Store>;
 
   const mockCourses: Course[] = [
     { id: '1', title: 'Angular Basics', description: 'Learn Angular fundamentals', beginDate: new Date('2024-01-01'), endDate: new Date('2024-06-01'), status: CourseStatus.SCHEDULED },
@@ -24,13 +26,17 @@ describe('CoursesTable', () => {
       courses$: new BehaviorSubject(mockCourses)
     });
     const dialogSpy = jasmine.createSpyObj('MatDialog', ['open']);
+    mockStore = jasmine.createSpyObj('Store', ['dispatch', 'select']);
+
+    mockStore.select.and.returnValue(new BehaviorSubject(mockCourses));
 
     await TestBed.configureTestingModule({
       declarations: [CoursesTable],
       imports: [SharedModule, RouterTestingModule],
       providers: [
         { provide: CoursesService, useValue: coursesServiceSpy },
-        { provide: MatDialog, useValue: dialogSpy }
+        { provide: MatDialog, useValue: dialogSpy },
+        { provide: Store, useValue: mockStore }
       ]
     })
       .compileComponents();
@@ -59,7 +65,7 @@ describe('CoursesTable', () => {
 
   it('should call getCourses on initialization', () => {
     component.ngOnInit();
-    expect(coursesService.getCourses).toHaveBeenCalled();
+    expect(mockStore.dispatch).toHaveBeenCalled();
   });
 
   it('should open confirmation dialog when deleting a course', () => {

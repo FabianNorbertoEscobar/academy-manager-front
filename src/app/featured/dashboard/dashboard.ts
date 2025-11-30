@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../core/services/auth/auth';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { RootState } from '../../core/store';
+import { selectUser } from '../../core/store/auth/auth.selector';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +30,11 @@ export class Dashboard {
     },
   ];
 
-  constructor(private authService: AuthService) { }
+  user$: Observable<any>;
+
+  constructor(private authService: AuthService, private store: Store<RootState>) {
+    this.user$ = this.store.select(selectUser);
+  }
 
   logout() {
     this.authService.logout();

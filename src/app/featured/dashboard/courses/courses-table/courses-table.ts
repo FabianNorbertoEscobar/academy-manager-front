@@ -5,6 +5,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { CoursesService } from '../../../../core/services/courses/courses';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../../confirmation-dialog/confirmation-dialog';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { RootState } from '../../../../core/store';
+import { CoursesActions } from '../store/courses.actions';
+import { selectCourses, selectIsLoading, selectError } from '../store/courses.selectors';
 
 @Component({
   selector: 'app-courses-table',
@@ -18,14 +23,34 @@ export class CoursesTable {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private courseService: CoursesService, private dialog: MatDialog) {
-    this.courseService.courses$.subscribe((courses) => {
-      this.dataSource.data = courses;
-    });
+  courses$: Observable<Course[]>;
+  isLoading$: Observable<boolean>;
+  error$: Observable<any>;
+
+  constructor(private courseService: CoursesService, private dialog: MatDialog, private store: Store<RootState>) {
+    this.courses$ = this.store.select(selectCourses);
+    this.isLoading$ = this.store.select(selectIsLoading);
+    this.error$ = this.store.select(selectError);
   }
 
   ngOnInit() {
-    this.courseService.getCourses();
+    this.store.dispatch(CoursesActions.loadCourses());
+
+    this.courses$.subscribe({
+      next: (courses) => {
+        let currentPageSize = this.paginator ? this.paginator.pageSize : undefined;
+        this.dataSource.data = courses;
+        if (this.paginator) {
+          this.dataSource.paginator = this.paginator;
+          if (currentPageSize && this.paginator.pageSize !== currentPageSize) {
+            this.paginator._changePageSize(currentPageSize);
+          }
+        }
+      },
+      error: (error) => {
+        console.error('Error loading courses:', error);
+      },
+    });
   }
 
   ngAfterViewInit() {

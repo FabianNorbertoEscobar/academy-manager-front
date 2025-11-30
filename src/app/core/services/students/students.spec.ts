@@ -1,14 +1,15 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { Store } from '@ngrx/store';
 
 import { StudentsService } from './students';
-import { filter, skip, take } from 'rxjs/operators';
 import { Student, Gender } from './model/Student';
 import { API_URL } from '../../utils/constants';
 
 describe('Students', () => {
   let service: StudentsService;
   let httpMock: HttpTestingController;
+  let mockStore: jasmine.SpyObj<Store>;
 
   const mockStudents: Student[] = [
     { id: '1', firstName: 'John', lastName: 'Doe', email: 'john@example.com', birthDate: new Date('2000-01-01'), gender: Gender.MALE },
@@ -16,9 +17,14 @@ describe('Students', () => {
   ];
 
   beforeEach(() => {
+    mockStore = jasmine.createSpyObj('Store', ['dispatch', 'select']);
+
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [StudentsService]
+      providers: [
+        StudentsService,
+        { provide: Store, useValue: mockStore }
+      ]
     });
 
     service = TestBed.inject(StudentsService);
@@ -87,20 +93,5 @@ describe('Students', () => {
     });
   });
 
-  xit('should delete a student', (done) => {
-    const studentIdToDelete = '1';
-
-    service.deleteStudent(studentIdToDelete);
-
-    const req = httpMock.expectOne(`${API_URL}/students/${studentIdToDelete}`);
-    expect(req.request.method).toBe('DELETE');
-    req.flush({});
-
-    service.students$.subscribe((students) => {
-      expect(students.length).toBe(1);
-      expect(students.find(s => s.id === studentIdToDelete)).toBeUndefined();
-      done();
-    });
-  });
 
 });

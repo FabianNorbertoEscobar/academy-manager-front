@@ -3,6 +3,9 @@ import { Student } from './model/Student';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../utils/constants';
+import { Store } from '@ngrx/store';
+import { RootState } from '../../store';
+import { StudentsActions } from '../../../featured/dashboard/students/store/students.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -14,14 +17,19 @@ export class StudentsService {
 
   private studentsUrl = `${API_URL}/students`;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private store: Store<RootState>) {
     this.getStudents();
+  }
+
+  getStudentsForEffect() {
+    return this.http.get<Student[]>(this.studentsUrl);
   }
 
   getStudents() {
     this.http.get<Student[]>(this.studentsUrl).subscribe((students) => {
       this.students = students;
       this.studentSubject.next(students);
+      this.store.dispatch(StudentsActions.loadStudentsSuccess({ students }));
     });
   }
 
@@ -35,22 +43,25 @@ export class StudentsService {
     this.http.post<Student>(this.studentsUrl, student).subscribe((student) => {
       this.students.push(student);
       this.studentSubject.next([...this.students]);
+      this.store.dispatch(StudentsActions.loadStudentsSuccess({ students: [...this.students] }));
     });
   }
 
   updateStudent(student: Student) {
-    const updatedStudents = this.students.map((s) => (String(s.id) === String(student.id) ? student : s));
+    const updatedStudents = this.students.map((c) => (String(c.id) === String(student.id) ? student : c));
     this.http.put<Student>(`${this.studentsUrl}/${student.id}`, student).subscribe((student) => {
       this.students = updatedStudents;
       this.studentSubject.next(updatedStudents);
+      this.store.dispatch(StudentsActions.loadStudentsSuccess({ students: [...this.students] }));
     });
   }
 
   deleteStudent(id: number | string) {
-    const updatedStudents = this.students.filter((s) => String(s.id) !== String(id));
+    const updatedStudents = this.students.filter((c) => String(c.id) !== String(id));
     this.http.delete<Student>(`${this.studentsUrl}/${id}`).subscribe(() => {
       this.students = updatedStudents;
       this.studentSubject.next(updatedStudents);
+      this.store.dispatch(StudentsActions.loadStudentsSuccess({ students: [...this.students] }));
     });
   }
 }
