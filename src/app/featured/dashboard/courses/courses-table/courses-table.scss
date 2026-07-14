@@ -2,3 +2,126 @@
     margin-bottom: 1rem;
     margin-right: 1rem;
 }
+
+.mat-elevation-z8 {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+}
+
+// Header con gradiente
+.mat-mdc-header-row {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    .mat-mdc-header-cell {
+        color: white;
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        padding: 20px 16px;
+        border-bottom: none;
+    }
+}
+
+// Filas alternadas con colores
+.mat-mdc-row {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:nth-child(odd) {
+        background-color: #fafafa;
+    }
+
+    &:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    &:hover {
+        background: linear-gradient(90deg, #f8f9ff 0%, #fff 100%);
+        transform: scale(1.01);
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+    }
+
+    .mat-mdc-cell {
+        padding: 16px;
+        font-size: 0.9rem;
+        color: #333;
+        border-bottom: none;
+    }
+}
+
+.mat-column-actions {
+    width: 150px;
+    text-align: center;
+
+    button {
+        margin: 0 2px;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.15);
+        }
+    }
+}
+
+.mat-column-id {
+    width: 60px;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.mat-column-title {
+    font-weight: 500;
+}
+
+.mat-column-status {
+    width: 120px;
+
+    .mat-mdc-cell {
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+}
+
+.mat-column-beginDate,
+.mat-column-endDate {
+    width: 130px;
+    color: #666;
+}
+
+.link-text {
+    color: #667eea;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
+
+    &:hover {
+        color: #764ba2;
+        text-decoration: underline;
+    }
+}
+
+// Mensaje de no hay datos
+.mat-row.mat-mdc-no-data-row {
+    background-color: #fff;
+
+    .mat-cell {
+        text-align: center;
+        font-style: italic;
+        color: #999;
+        padding: 40px;
+    }
+}
+
+// Paginador
+.mat-mdc-paginator {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-top: 2px solid #667eea;
+}

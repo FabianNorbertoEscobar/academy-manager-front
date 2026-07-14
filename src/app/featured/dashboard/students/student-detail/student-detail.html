@@ -1,0 +1,120 @@
+<div class="student-detail-container">
+    @if (student) {
+    <div class="detail-header">
+        <button mat-icon-button (click)="goBack()" class="back-button">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1>Detalle del Alumno</h1>
+    </div>
+
+    <div class="detail-content">
+        <!-- Card principal con foto y datos básicos -->
+        <mat-card class="main-card">
+            <mat-card-content>
+                <div class="student-overview">
+                    <div class="photo-section">
+                        <div class="photo-container">
+                            <img [src]="photoUrl" [alt]="student.firstName + ' ' + student.lastName"
+                                class="student-photo" (error)="$any($event.target).src='/imgs/default-avatar.svg'" />
+                        </div>
+                        <div class="student-name">
+                            <h2>{{ student.firstName }} {{ student.lastName }}</h2>
+                            <div class="student-id">
+                                <mat-icon>badge</mat-icon>
+                                <span>ID: {{ student.id }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button mat-raised-button color="primary" (click)="editStudent()" class="edit-button">
+                            <mat-icon>edit</mat-icon>
+                            Editar Alumno
+                        </button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <!-- Grid de información detallada -->
+        <div class="info-grid">
+            <!-- Información Personal -->
+            <mat-card class="info-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <mat-icon>person</mat-icon>
+                        Información Personal
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>person_outline</mat-icon>
+                            <span>Nombre Completo</span>
+                        </div>
+                        <div class="info-value">{{ student.firstName }} {{ student.lastName }}</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>{{ getGenderIcon(student.gender) }}</mat-icon>
+                            <span>Género</span>
+                        </div>
+                        <div class="info-value">{{ getGenderLabel(student.gender) }}</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>cake</mat-icon>
+                            <span>Fecha de Nacimiento</span>
+                        </div>
+                        <div class="info-value">{{ student.birthDate | date : 'dd/MM/yyyy' }}</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>event</mat-icon>
+                            <span>Edad</span>
+                        </div>
+                        <div class="info-value">{{ studentAge }} años</div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Información de Contacto -->
+            <mat-card class="info-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <mat-icon>contact_mail</mat-icon>
+                        Información de Contacto
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>email</mat-icon>
+                            <span>Correo Electrónico</span>
+                        </div>
+                        <div class="info-value email-value">
+                            <a [href]="'mailto:' + student.email">{{ student.email }}</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>badge</mat-icon>
+                            <span>ID del Sistema</span>
+                        </div>
+                        <div class="info-value">{{ student.id }}</div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    } @else {
+    <div class="loading-container">
+        <mat-spinner></mat-spinner>
+        <p>Cargando información del alumno...</p>
+    </div>
+    }
+</div>

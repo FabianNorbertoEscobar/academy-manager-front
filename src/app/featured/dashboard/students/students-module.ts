@@ -5,6 +5,7 @@ import { StudentsRoutingModule } from './students-routing-module';
 import { Students } from './students';
 import { StudentsForm } from './students-form/students-form';
 import { StudentsTable } from './students-table/students-table';
+import { StudentDetail } from './student-detail/student-detail';
 import { SharedModule } from '../../../shared/shared-module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -16,7 +17,8 @@ import { studentsFeature } from '../students/store/students.reducer';
   declarations: [
     Students,
     StudentsForm,
-    StudentsTable
+    StudentsTable,
+    StudentDetail
   ],
   imports: [
     CommonModule,

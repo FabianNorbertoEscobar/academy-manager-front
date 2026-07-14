@@ -1,134 +1,318 @@
-<h1 appHeaderFont class="mb-3">Bienvenido {{ (user$ | async)?.username }}</h1>
+<div class="home-container">
+    <h1 appHeaderFont class="welcome-title">
+        Bienvenido {{ (user$ | async)?.username }}
+    </h1>
 
-@if ((user$ | async)?.role === 'ADMIN') {
+    @if ((user$ | async)?.role === 'ADMIN') {
 
-<section class="dashboard-section">
-    <mat-grid-list cols="3" rowHeight="120px" gutterSize="16px">
+    <!-- Estadísticas principales -->
+    <section class="stats-section">
+        <h2 class="section-title">
+            <mat-icon>analytics</mat-icon>
+            Estadísticas Generales
+        </h2>
 
-        <mat-grid-tile>
-            <mat-card class="dashboard-card">
-                <h3>Total de cursos</h3>
-                <p>{{ totalCourses }}</p>
+        <div class="stats-grid">
+            <!-- Total de cursos -->
+            <mat-card class="stat-card primary-card">
+                <mat-card-content>
+                    <div class="stat-icon">
+                        <mat-icon>school</mat-icon>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total de Cursos</h3>
+                        <p class="stat-number">{{ stats.totalCourses }}</p>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-card class="dashboard-card">
-                <h3>Total de alumnos</h3>
-                <p>{{ totalStudents }}</p>
+            <!-- Total de estudiantes -->
+            <mat-card class="stat-card accent-card">
+                <mat-card-content>
+                    <div class="stat-icon">
+                        <mat-icon>groups</mat-icon>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total de Alumnos</h3>
+                        <p class="stat-number">{{ stats.totalStudents }}</p>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-card class="dashboard-card alert-card">
-                <h3>Cursos sin alumnos</h3>
-                <p>{{ emptyCourses }}</p>
+            <!-- Cursos activos -->
+            <mat-card class="stat-card success-card">
+                <mat-card-content>
+                    <div class="stat-icon">
+                        <mat-icon>play_circle</mat-icon>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Cursos Activos</h3>
+                        <p class="stat-number">{{ stats.activeCourses }}</p>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-card class="dashboard-card alert-card">
-                <h3>Cursos por finalizar</h3>
-                <p>{{ endingSoonCourses }}</p>
+            <!-- Cursos programados -->
+            <mat-card class="stat-card info-card">
+                <mat-card-content>
+                    <div class="stat-icon">
+                        <mat-icon>schedule</mat-icon>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Programados</h3>
+                        <p class="stat-number">{{ stats.scheduledCourses }}</p>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-card class="dashboard-card alert-card">
-                <h3>Datos incompletos</h3>
-                <p>{{ incompleteStudents }}</p>
+            <!-- Cursos finalizados -->
+            <mat-card class="stat-card neutral-card">
+                <mat-card-content>
+                    <div class="stat-icon">
+                        <mat-icon>check_circle</mat-icon>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Finalizados</h3>
+                        <p class="stat-number">{{ stats.finishedCourses }}</p>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-card class="dashboard-card alert-card">
-                <h3>Cursos inactivos</h3>
-                <p>{{ inactiveCourses }}</p>
+            <!-- Cursos por finalizar -->
+            @if (stats.endingSoonCourses > 0) {
+            <mat-card class="stat-card warning-card">
+                <mat-card-content>
+                    <div class="stat-icon">
+                        <mat-icon>warning</mat-icon>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Finalizan Pronto</h3>
+                        <p class="stat-number">{{ stats.endingSoonCourses }}</p>
+                        <span class="stat-hint">próximos 30 días</span>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
+            }
+        </div>
+    </section>
 
-        <mat-grid-tile>
-            <mat-card class="dashboard-card alert-card">
-                <h3>Alumnos sin curso</h3>
-                <p>{{ studentsWithoutCourse }}</p>
+    <!-- Distribución de estudiantes por género -->
+    <section class="distribution-section">
+        <h2 class="section-title">
+            <mat-icon>pie_chart</mat-icon>
+            Distribución por Género
+        </h2>
+
+        <div class="distribution-grid">
+            <mat-card class="distribution-card">
+                <mat-card-content>
+                    <div class="distribution-item">
+                        <mat-icon class="gender-icon male">male</mat-icon>
+                        <div class="distribution-info">
+                            <h4>Masculino</h4>
+                            <p class="distribution-number">{{ stats.maleStudents }}</p>
+                        </div>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-card class="dashboard-card">
-                <h3>Cursos programados</h3>
-                <p>{{ scheduledCourses }}</p>
+            <mat-card class="distribution-card">
+                <mat-card-content>
+                    <div class="distribution-item">
+                        <mat-icon class="gender-icon female">female</mat-icon>
+                        <div class="distribution-info">
+                            <h4>Femenino</h4>
+                            <p class="distribution-number">{{ stats.femaleStudents }}</p>
+                        </div>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-card class="dashboard-card">
-                <h3>Cursos por iniciar</h3>
-                <p>{{ startingSoonCourses }}</p>
+            <mat-card class="distribution-card">
+                <mat-card-content>
+                    <div class="distribution-item">
+                        <mat-icon class="gender-icon other">diversity_3</mat-icon>
+                        <div class="distribution-info">
+                            <h4>Otro</h4>
+                            <p class="distribution-number">{{ stats.otherGenderStudents }}</p>
+                        </div>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
+        </div>
+    </section>
 
-    </mat-grid-list>
-</section>
+    <!-- Distribución de estudiantes por edad -->
+    <section class="distribution-section">
+        <h2 class="section-title">
+            <mat-icon>cake</mat-icon>
+            Distribución por Edad
+        </h2>
 
-<section class="quick-actions">
-    <h2>Accesos rápidos</h2>
-
-    <div class="actions-row">
-        <button mat-raised-button color="primary" (click)="goToCreateCourse()">
-            <mat-icon>add</mat-icon> Crear curso
-        </button>
-
-        <button mat-raised-button color="primary" (click)="goToCreateStudent()">
-            <mat-icon>person_add</mat-icon> Crear alumno
-        </button>
-
-        <button mat-stroked-button color="accent" (click)="goToCourses()">
-            <mat-icon>list</mat-icon> Ver cursos
-        </button>
-
-        <button mat-stroked-button color="accent" (click)="goToStudents()">
-            <mat-icon>group</mat-icon> Ver alumnos
-        </button>
-    </div>
-</section>
-
-}
-
-@else {
-
-<section class="dashboard-section">
-    <mat-grid-list cols="2" rowHeight="120px" gutterSize="16px">
-
-        <mat-grid-tile>
-            <mat-card class="dashboard-card">
-                <h3>Total de cursos</h3>
-                <p>{{ totalCourses }}</p>
+        <div class="distribution-grid age-grid">
+            <mat-card class="distribution-card age-card">
+                <mat-card-content>
+                    <div class="distribution-item">
+                        <mat-icon class="age-icon youth">child_care</mat-icon>
+                        <div class="distribution-info">
+                            <h4>Menores de 20</h4>
+                            <p class="distribution-number">{{ stats.studentsUnder20 }}</p>
+                        </div>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
 
-        <mat-grid-tile>
-            <mat-card class="dashboard-card">
-                <h3>Total de alumnos</h3>
-                <p>{{ totalStudents }}</p>
+            <mat-card class="distribution-card age-card">
+                <mat-card-content>
+                    <div class="distribution-item">
+                        <mat-icon class="age-icon young">school</mat-icon>
+                        <div class="distribution-info">
+                            <h4>20-29 años</h4>
+                            <p class="distribution-number">{{ stats.students20to29 }}</p>
+                        </div>
+                    </div>
+                </mat-card-content>
             </mat-card>
-        </mat-grid-tile>
 
-    </mat-grid-list>
-</section>
+            <mat-card class="distribution-card age-card">
+                <mat-card-content>
+                    <div class="distribution-item">
+                        <mat-icon class="age-icon adult">work</mat-icon>
+                        <div class="distribution-info">
+                            <h4>30-39 años</h4>
+                            <p class="distribution-number">{{ stats.students30to39 }}</p>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
 
-<section class="quick-actions">
-    <h2>Accesos rápidos</h2>
+            <mat-card class="distribution-card age-card">
+                <mat-card-content>
+                    <div class="distribution-item">
+                        <mat-icon class="age-icon senior">elderly</mat-icon>
+                        <div class="distribution-info">
+                            <h4>40 años o más</h4>
+                            <p class="distribution-number">{{ stats.students40Plus }}</p>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </section>
 
-    <div class="actions-row">
-        <button mat-stroked-button color="accent" (click)="goToCourses()">
-            <mat-icon>list</mat-icon> Ver cursos
-        </button>
+    <!-- Actividad reciente -->
+    <section class="recent-section">
+        <div class="recent-grid">
+            <!-- Cursos recientes -->
+            <mat-card class="recent-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <mat-icon>history</mat-icon>
+                        Cursos Recientes
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    @if (recentCourses.length > 0) {
+                    <mat-list>
+                        @for (course of recentCourses; track course.id) {
+                        <mat-list-item class="clickable-item" (click)="goToCourseDetail(course.id)">
+                            <mat-icon matListItemIcon>school</mat-icon>
+                            <div matListItemTitle>{{ course.title }}</div>
+                            <div matListItemLine>
+                                <mat-chip [color]="getStatusColor(course.status)">
+                                    {{ getStatusLabel(course.status) }}
+                                </mat-chip>
+                            </div>
+                        </mat-list-item>
+                        }
+                    </mat-list>
+                    } @else {
+                    <p class="empty-message">No hay cursos registrados</p>
+                    }
+                </mat-card-content>
+            </mat-card>
 
-        <button mat-stroked-button color="accent" (click)="goToStudents()">
-            <mat-icon>group</mat-icon> Ver alumnos
-        </button>
-    </div>
-</section>
+            <!-- Estudiantes recientes -->
+            <mat-card class="recent-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <mat-icon>person_add</mat-icon>
+                        Alumnos Recientes
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    @if (recentStudents.length > 0) {
+                    <mat-list>
+                        @for (student of recentStudents; track student.id) {
+                        <mat-list-item class="clickable-item" (click)="goToStudentDetail(student.id)">
+                            <mat-icon matListItemIcon>{{ getGenderIcon(student.gender) }}</mat-icon>
+                            <div matListItemTitle>{{ student | fullName }}</div>
+                            <div matListItemLine>{{ student.email }}</div>
+                        </mat-list-item>
+                        }
+                    </mat-list>
+                    } @else {
+                    <p class="empty-message">No hay alumnos registrados</p>
+                    }
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </section>
 
-}
+    <!-- Accesos rápidos -->
+    <section class="quick-actions">
+        <h2 class="section-title">
+            <mat-icon>flash_on</mat-icon>
+            Accesos Rápidos
+        </h2>
+
+        <div class="actions-grid">
+            <button mat-raised-button color="primary" class="action-button" (click)="goToCreateCourse()">
+                <mat-icon>add_circle</mat-icon>
+                <span>Crear Curso</span>
+            </button>
+
+            <button mat-raised-button color="primary" class="action-button" (click)="goToCreateStudent()">
+                <mat-icon>person_add</mat-icon>
+                <span>Crear Alumno</span>
+            </button>
+
+            <button mat-raised-button color="accent" class="action-button" (click)="goToCourses()">
+                <mat-icon>list</mat-icon>
+                <span>Ver Cursos</span>
+            </button>
+
+            <button mat-raised-button color="accent" class="action-button" (click)="goToStudents()">
+                <mat-icon>group</mat-icon>
+                <span>Ver Alumnos</span>
+            </button>
+        </div>
+    </section>
+
+    } @else {
+
+    <!-- Vista para usuarios no admin -->
+    <section class="user-view">
+        <mat-card class="welcome-card">
+            <mat-card-content>
+                <mat-icon class="welcome-icon">celebration</mat-icon>
+                <h2>¡Bienvenido a Academy Manager!</h2>
+                <p>Explora los cursos y alumnos disponibles usando el menú lateral.</p>
+            </mat-card-content>
+        </mat-card>
+
+        <div class="actions-grid">
+            <button mat-raised-button color="primary" class="action-button" (click)="goToCourses()">
+                <mat-icon>school</mat-icon>
+                <span>Ver Cursos</span>
+            </button>
+
+            <button mat-raised-button color="accent" class="action-button" (click)="goToStudents()">
+                <mat-icon>groups</mat-icon>
+                <span>Ver Alumnos</span>
+            </button>
+        </div>
+    </section>
+
+    }
+</div>

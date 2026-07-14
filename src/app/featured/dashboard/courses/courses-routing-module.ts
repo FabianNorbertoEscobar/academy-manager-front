@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { Courses } from './courses';
 import { CoursesForm } from './courses-form/courses-form';
 import { CoursesTable } from './courses-table/courses-table';
+import { CourseDetail } from './course-detail/course-detail';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: 'edit/:id',
         component: CoursesForm,
+      },
+      {
+        path: 'detail/:id',
+        component: CourseDetail,
       },
     ],
   },

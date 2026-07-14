@@ -22,6 +22,7 @@ import { getSpanishPaginatorIntl } from './paginator-intl-spanish';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
 import { HeaderFont } from './directives/header-font';
 import { FullNamePipe } from './pipes/full-name-pipe';
 import { RouterModule } from '@angular/router';
@@ -50,7 +51,8 @@ import { RouterModule } from '@angular/router';
     MatDatepickerModule,
     MatSelectModule,
     MatGridListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatChipsModule
   ],
   exports: [
     CommonModule,
@@ -74,6 +76,7 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     MatGridListModule,
     MatProgressSpinnerModule,
+    MatChipsModule,
     HeaderFont,
     FullNamePipe
   ],

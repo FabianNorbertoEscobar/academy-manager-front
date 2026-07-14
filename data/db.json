@@ -50,7 +50,7 @@
     {
       "id": "4",
       "title": "Bailes Urbanos",
-      "description": "Curso intensivo de danza urbana que combina estilos como hip-hop, street dance y funk. Ideal para artistas que desean complementar su formación vocal con presencia escénica y dominio del cuerpo en movimiento.",
+      "description": "Curso intensivo de danza urbana que combina estilos como hip-hop, street dance y funk. Ideal para artistas que desean complementar su formación vocal con presencia escénica y dominio del cuerpo en movimiento..",
       "beginDate": "2025-05-10",
       "endDate": "2025-08-20",
       "status": "SCHEDULED"
@@ -111,7 +111,8 @@
       "lastName": "Arenas",
       "gender": "FEMALE",
       "birthDate": "2006-05-14",
-      "email": "claudia.arenas@ot2025.es"
+      "email": "claudia.arenas@ot2025.es",
+      "photoUrl": "/imgs/claudia-arenas.jpg"
     },
     {
       "id": "2",
@@ -119,7 +120,8 @@
       "lastName": "Sánchez",
       "gender": "FEMALE",
       "birthDate": "2006-03-22",
-      "email": "cristina.sanchez@ot2025.es"
+      "email": "cristina.sanchez@ot2025.es",
+      "photoUrl": "/imgs/cristina-sanchez.jpg"
     },
     {
       "id": "3",
@@ -127,7 +129,8 @@
       "lastName": "Crespo",
       "gender": "MALE",
       "birthDate": "2004-11-08",
-      "email": "javier.crespo@ot2025.es"
+      "email": "javier.crespo@ot2025.es",
+      "photoUrl": "/imgs/javier-crespo.jpg"
     },
     {
       "id": "4",
@@ -135,7 +138,8 @@
       "lastName": "de Diego",
       "gender": "FEMALE",
       "birthDate": "2006-09-17",
-      "email": "salma.dediego@ot2025.es"
+      "email": "salma.dediego@ot2025.es",
+      "photoUrl": "/imgs/salma-dediego.jpg"
     },
     {
       "id": "5",
@@ -143,7 +147,8 @@
       "lastName": "Muñoz",
       "gender": "FEMALE",
       "birthDate": "2005-12-04",
-      "email": "laura.munoz@ot2025.es"
+      "email": "laura.munoz@ot2025.es",
+      "photoUrl": "/imgs/laura-munoz.jpg"
     },
     {
       "id": "6",
@@ -151,7 +156,8 @@
       "lastName": "de los Reyes",
       "gender": "MALE",
       "birthDate": "2002-04-10",
-      "email": "carlos.delosreyes@ot2025.es"
+      "email": "carlos.delosreyes@ot2025.es",
+      "photoUrl": "/imgs/carlos-delosreyes.jpg"
     },
     {
       "id": "7",
@@ -159,7 +165,8 @@
       "lastName": "Toledano",
       "gender": "MALE",
       "birthDate": "2001-07-26",
-      "email": "guillermo.toledano@ot2025.es"
+      "email": "guillermo.toledano@ot2025.es",
+      "photoUrl": "/imgs/guillermo-toledano.jpg"
     },
     {
       "id": "8",
@@ -167,7 +174,8 @@
       "lastName": "Rist",
       "gender": "MALE",
       "birthDate": "2002-02-15",
-      "email": "guillo.rist@ot2025.es"
+      "email": "guillo.rist@ot2025.es",
+      "photoUrl": "/imgs/guillo-rist.jpg"
     },
     {
       "id": "9",
@@ -175,7 +183,8 @@
       "lastName": "Rojo",
       "gender": "MALE",
       "birthDate": "2002-08-30",
-      "email": "ivan.rojo@ot2025.es"
+      "email": "ivan.rojo@ot2025.es",
+      "photoUrl": "/imgs/ivan-rojo.jpg"
     },
     {
       "id": "10",
@@ -183,7 +192,8 @@
       "lastName": "Garuz",
       "gender": "FEMALE",
       "birthDate": "2005-06-02",
-      "email": "judit.garuz@ot2025.es"
+      "email": "judit.garuz@ot2025.es",
+      "photoUrl": "/imgs/judit-garuz.jpg"
     },
     {
       "id": "11",
@@ -191,7 +201,8 @@
       "lastName": "Illán",
       "gender": "MALE",
       "birthDate": "2004-01-27",
-      "email": "quique.illan@ot2025.es"
+      "email": "quique.illan@ot2025.es",
+      "photoUrl": "/imgs/quique-illan.jpg"
     },
     {
       "id": "12",
@@ -199,7 +210,8 @@
       "lastName": "Casani",
       "gender": "FEMALE",
       "birthDate": "2006-10-11",
-      "email": "lucia.casani@ot2025.es"
+      "email": "lucia.casani@ot2025.es",
+      "photoUrl": "/imgs/lucia-casani.jpg"
     },
     {
       "id": "13",
@@ -207,7 +219,8 @@
       "lastName": "Cruz",
       "gender": "FEMALE",
       "birthDate": "2001-09-05",
-      "email": "maria.cruz@ot2025.es"
+      "email": "maria.cruz@ot2025.es",
+      "photoUrl": "/imgs/maria-cruz.jpg"
     },
     {
       "id": "14",
@@ -215,7 +228,8 @@
       "lastName": "Vaamonde",
       "gender": "MALE",
       "birthDate": "2003-02-09",
-      "email": "tinho.vaamonde@ot2025.es"
+      "email": "tinho.vaamonde@ot2025.es",
+      "photoUrl": "/imgs/tinho-vaamonde.jpg"
     },
     {
       "id": "15",
@@ -223,7 +237,8 @@
       "lastName": "Navarro",
       "gender": "MALE",
       "birthDate": "2002-03-18",
-      "email": "max.navarro@ot2025.es"
+      "email": "max.navarro@ot2025.es",
+      "photoUrl": "/imgs/max-navarro.jpg"
     },
     {
       "id": "16",
@@ -231,7 +246,8 @@
       "lastName": "Ortiz",
       "gender": "MALE",
       "birthDate": "1996-07-20",
-      "email": "sam.ortiz@ot2025.es"
+      "email": "sam.ortiz@ot2025.es",
+      "photoUrl": "/imgs/sam-ortiz.jpg"
     },
     {
       "id": "17",
@@ -239,7 +255,8 @@
       "lastName": "Fernández",
       "gender": "FEMALE",
       "birthDate": "2006-11-23",
-      "email": "olivia.fernandez@ot2025.es"
+      "email": "olivia.fernandez@ot2025.es",
+      "photoUrl": "/imgs/olivia-fernandez.jpg"
     },
     {
       "id": "18",
@@ -247,7 +264,8 @@
       "lastName": "Matateyou García",
       "gender": "FEMALE",
       "birthDate": "1997-01-19",
-      "email": "teyou.matateyougarcia@ot2025.es"
+      "email": "teyou.matateyougarcia@ot2025.es",
+      "photoUrl": "/imgs/teyou-matateyougarcia.jpg"
     }
   ]
 }

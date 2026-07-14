@@ -5,6 +5,7 @@ import { CoursesRoutingModule } from './courses-routing-module';
 import { Courses } from './courses';
 import { CoursesTable } from './courses-table/courses-table';
 import { CoursesForm } from './courses-form/courses-form';
+import { CourseDetail } from './course-detail/course-detail';
 import { SharedModule } from '../../../shared/shared-module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -16,7 +17,8 @@ import { coursesFeature } from './store/courses.reducer';
   declarations: [
     Courses,
     CoursesTable,
-    CoursesForm
+    CoursesForm,
+    CourseDetail
   ],
   imports: [
     CommonModule,

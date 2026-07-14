@@ -5,6 +5,7 @@ export interface Student {
   gender: Gender;
   birthDate: Date;
   email: string;
+  photoUrl?: string;
 }
 
 export enum Gender {

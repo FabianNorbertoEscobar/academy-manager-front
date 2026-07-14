@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { RootState } from '../../../../core/store';
 import { StudentsActions } from '../store/students.actions';
 import { selectStudents, selectIsLoading, selectError } from '../store/students.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-students-table',
@@ -27,7 +28,12 @@ export class StudentsTable {
   isLoading$: Observable<boolean>;
   error$: Observable<any>;
 
-  constructor(private studentService: StudentsService, private dialog: MatDialog, private store: Store<RootState>) {
+  constructor(
+    private studentService: StudentsService,
+    private dialog: MatDialog,
+    private store: Store<RootState>,
+    private router: Router
+  ) {
     this.students$ = this.store.select(selectStudents);
     this.isLoading$ = this.store.select(selectIsLoading);
     this.error$ = this.store.select(selectError);
@@ -75,5 +81,9 @@ export class StudentsTable {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  goToDetail(studentId: number | string) {
+    this.router.navigate(['/dashboard/students/detail', studentId]);
   }
 }

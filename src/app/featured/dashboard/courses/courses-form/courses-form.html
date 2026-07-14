@@ -1,48 +1,106 @@
-<form [formGroup]="createForm" (ngSubmit)="onSubmit()">
-    @if (isEditing) {
-    <mat-form-field appearance="fill">
-        <mat-label>ID</mat-label>
-        <input matInput disabled value="{{ courseId }}" />
-    </mat-form-field>
-    }
+<div class="form-container">
+    <div class="form-header">
+        <div class="header-icon">
+            <mat-icon>school</mat-icon>
+        </div>
+        <div class="header-text">
+            <h1>{{ isEditing ? 'Editar Curso' : 'Crear Curso' }}</h1>
+            <p>{{ isEditing ? 'Modifica la información del curso' : 'Completa los datos del nuevo curso' }}</p>
+        </div>
+    </div>
 
-    <mat-form-field class="w-full">
-        <mat-label>Título</mat-label>
-        <input [ngClass]="{
-          'is-invalid': inputInvalid('title'),
-          'is-valid': inputValid('title') && createForm.get('title')?.dirty,
-        }" matInput name="title" formControlName="title" />
+    <mat-card class="form-card">
+        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+            @if (isEditing) {
+            <div class="id-badge">
+                <mat-icon>tag</mat-icon>
+                <span>ID: {{ courseId }}</span>
+            </div>
+            }
 
-        <mat-error> {{ getError('title') }} </mat-error>
-    </mat-form-field>
+            <div class="form-section">
+                <h3 class="section-title">
+                    <mat-icon>info</mat-icon>
+                    Información General
+                </h3>
 
-    <mat-form-field class="w-full">
-        <mat-label>Descripción</mat-label>
-        <textarea matInput placeholer="Descripción" name="description" formControlName="description"></textarea>
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Título del Curso</mat-label>
+                    <mat-icon matPrefix>title</mat-icon>
+                    <input [ngClass]="{
+                      'is-invalid': inputInvalid('title'),
+                      'is-valid': inputValid('title') && createForm.get('title')?.dirty,
+                    }" matInput name="title" formControlName="title" placeholder="Ej. Técnica Vocal" />
+                    <mat-error> {{ getError('title') }} </mat-error>
+                </mat-form-field>
 
-        <mat-error> {{ getError('description') }} </mat-error>
-    </mat-form-field>
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <mat-icon matPrefix>description</mat-icon>
+                    <textarea matInput rows="4" placeholder="Describe el contenido del curso" name="description"
+                        formControlName="description"></textarea>
+                    <mat-error> {{ getError('description') }} </mat-error>
+                </mat-form-field>
+            </div>
 
-    <mat-form-field class="w-full">
-        <mat-label>Fecha de inicio - Fecha de fin</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate formControlName="beginDate" placeholder="Fecha inicio" />
-            <input matEndDate formControlName="endDate" placeholder="Fecha fin" />
-        </mat-date-range-input>
-        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"> </mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
+            <div class="form-section">
+                <h3 class="section-title">
+                    <mat-icon>event</mat-icon>
+                    Fechas
+                </h3>
 
-    <mat-form-field class="w-full">
-        <mat-label>Estado</mat-label>
-        <mat-select name="status" formControlName="status">
-            <mat-option value="SCHEDULED">Programado</mat-option>
-            <mat-option value="STARTED">Iniciado</mat-option>
-            <mat-option value="FINISHED">Terminado</mat-option>
-            <mat-option value="CANCELLED">Cancelado</mat-option>
-        </mat-select>
-    </mat-form-field>
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Fecha de inicio - Fecha de fin</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate formControlName="beginDate" placeholder="Fecha inicio" />
+                        <input matEndDate formControlName="endDate" placeholder="Fecha fin" />
+                    </mat-date-range-input>
+                    <mat-hint>Selecciona el rango de fechas del curso</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"> </mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+            </div>
 
-    <button mat-flat-button color="primary">Guardar</button>
-</form>
+            <div class="form-section">
+                <h3 class="section-title">
+                    <mat-icon>tune</mat-icon>
+                    Configuración
+                </h3>
+
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Estado del Curso</mat-label>
+                    <mat-icon matPrefix>flag</mat-icon>
+                    <mat-select name="status" formControlName="status">
+                        <mat-option value="SCHEDULED">
+                            <mat-icon class="status-icon scheduled">schedule</mat-icon>
+                            Programado
+                        </mat-option>
+                        <mat-option value="STARTED">
+                            <mat-icon class="status-icon started">play_circle</mat-icon>
+                            Iniciado
+                        </mat-option>
+                        <mat-option value="FINISHED">
+                            <mat-icon class="status-icon finished">check_circle</mat-icon>
+                            Terminado
+                        </mat-option>
+                        <mat-option value="CANCELLED">
+                            <mat-icon class="status-icon cancelled">cancel</mat-icon>
+                            Cancelado
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" mat-stroked-button color="warn" routerLink="/dashboard/courses">
+                    <mat-icon>close</mat-icon>
+                    Cancelar
+                </button>
+                <button type="submit" mat-flat-button color="primary" [disabled]="createForm.invalid">
+                    <mat-icon>save</mat-icon>
+                    {{ isEditing ? 'Actualizar' : 'Guardar' }}
+                </button>
+            </div>
+        </form>
+    </mat-card>
+</div>

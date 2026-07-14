@@ -1,0 +1,189 @@
+<div class="course-detail-container">
+    @if (course) {
+    <div class="detail-header">
+        <button mat-icon-button (click)="goBack()" class="back-button">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1>Detalle del Curso</h1>
+    </div>
+
+    <div class="detail-content">
+        <!-- Card principal del curso -->
+        <mat-card class="main-card" [class]="getStatusClass(course.status)">
+            <mat-card-content>
+                <div class="course-overview">
+                    <div class="course-header">
+                        <div class="course-icon">
+                            <mat-icon>school</mat-icon>
+                        </div>
+                        <div class="course-title-section">
+                            <h2>{{ course.title }}</h2>
+                            <div class="course-status">
+                                <mat-chip [color]="getStatusColor(course.status)">
+                                    <mat-icon>{{ getStatusIcon(course.status) }}</mat-icon>
+                                    {{ getStatusLabel(course.status) }}
+                                </mat-chip>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button mat-raised-button color="primary" (click)="editCourse()" class="edit-button">
+                            <mat-icon>edit</mat-icon>
+                            Editar Curso
+                        </button>
+                    </div>
+                </div>
+
+                <div class="course-description">
+                    <h3>
+                        <mat-icon>description</mat-icon>
+                        Descripción
+                    </h3>
+                    <p>{{ course.description }}</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <!-- Grid de información detallada -->
+        <div class="info-grid">
+            <!-- Fechas del curso -->
+            <mat-card class="info-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <mat-icon>event</mat-icon>
+                        Fechas del Curso
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>event_available</mat-icon>
+                            <span>Fecha de Inicio</span>
+                        </div>
+                        <div class="info-value">{{ course.beginDate | date : 'dd/MM/yyyy' }}</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>event_busy</mat-icon>
+                            <span>Fecha de Finalización</span>
+                        </div>
+                        <div class="info-value">{{ course.endDate | date : 'dd/MM/yyyy' }}</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>access_time</mat-icon>
+                            <span>Duración</span>
+                        </div>
+                        <div class="info-value">{{ courseDuration }} días</div>
+                    </div>
+
+                    @if (course.status === 'STARTED' && daysRemaining > 0) {
+                    <div class="info-item highlight">
+                        <div class="info-label">
+                            <mat-icon>hourglass_empty</mat-icon>
+                            <span>Días Restantes</span>
+                        </div>
+                        <div class="info-value">{{ daysRemaining }} días</div>
+                    </div>
+                    }
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Información general -->
+            <mat-card class="info-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <mat-icon>info</mat-icon>
+                        Información General
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>badge</mat-icon>
+                            <span>ID del Curso</span>
+                        </div>
+                        <div class="info-value">{{ course.id }}</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>{{ getStatusIcon(course.status) }}</mat-icon>
+                            <span>Estado</span>
+                        </div>
+                        <div class="info-value">
+                            <mat-chip [color]="getStatusColor(course.status)" class="status-chip">
+                                {{ getStatusLabel(course.status) }}
+                            </mat-chip>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-label">
+                            <mat-icon>book</mat-icon>
+                            <span>Título del Curso</span>
+                        </div>
+                        <div class="info-value">{{ course.title }}</div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <!-- Estadísticas visuales -->
+        @if (course.status === 'STARTED') {
+        <mat-card class="stats-card">
+            <mat-card-header>
+                <mat-card-title>
+                    <mat-icon>timeline</mat-icon>
+                    Progreso del Curso
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="progress-info">
+                    <div class="progress-item">
+                        <mat-icon class="progress-icon active">play_circle</mat-icon>
+                        <div>
+                            <h4>Curso Activo</h4>
+                            <p>El curso está en progreso</p>
+                        </div>
+                    </div>
+                    @if (daysRemaining > 0) {
+                    <div class="progress-item">
+                        <mat-icon class="progress-icon warning">schedule</mat-icon>
+                        <div>
+                            <h4>{{ daysRemaining }} días restantes</h4>
+                            <p>Hasta la finalización del curso</p>
+                        </div>
+                    </div>
+                    } @else if (daysRemaining === 0) {
+                    <div class="progress-item">
+                        <mat-icon class="progress-icon success">today</mat-icon>
+                        <div>
+                            <h4>Finaliza hoy</h4>
+                            <p>Último día del curso</p>
+                        </div>
+                    </div>
+                    } @else {
+                    <div class="progress-item">
+                        <mat-icon class="progress-icon error">event_busy</mat-icon>
+                        <div>
+                            <h4>Fecha vencida</h4>
+                            <p>El curso debería haber finalizado</p>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </mat-card-content>
+        </mat-card>
+        }
+    </div>
+    } @else {
+    <div class="loading-container">
+        <mat-spinner></mat-spinner>
+        <p>Cargando información del curso...</p>
+    </div>
+    }
+</div>
